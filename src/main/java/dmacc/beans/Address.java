@@ -7,12 +7,11 @@ public class Address {
 	private String street;
 	private String city;
 	private String state;
-	
-	
+
 	public Address() {
 		super();
 	}
-	
+
 	public Address(String street, String city, String state) {
 		super();
 		this.street = street;
@@ -23,12 +22,15 @@ public class Address {
 	public String getStreet() {
 		return street;
 	}
+
 	public void setStreet(String street) {
 		this.street = street;
 	}
+
 	public String getState() {
 		return state;
 	}
+
 	public void setState(String state) {
 		this.state = state;
 	}
@@ -45,6 +47,5 @@ public class Address {
 	public String toString() {
 		return "Address [street=" + street + ", city=" + city + ", state=" + state + "]";
 	}
-	
 
 }
