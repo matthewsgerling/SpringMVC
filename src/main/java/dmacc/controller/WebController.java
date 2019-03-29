@@ -19,52 +19,57 @@ import dmacc.repository.ContactRepository;
 public class WebController {
 	@Autowired
 	ContactRepository repo;
-
+	
 	@GetMapping("/viewAll")
 	public String viewAllContacts(Model model) {
 		model.addAttribute("contacts", repo.findAll());
 		return "results";
 	}
-
+	
+	
 	@GetMapping("/inputContact")
 	public String addNewContact(Model model) {
-		Contact c = new Contact();
-		model.addAttribute("newContact", c);
-		return "input";
+	    Contact c = new Contact();
+	    model.addAttribute("newContact", c);
+	    return "input";
 	}
-
+	
 	@PostMapping("/inputContact")
 	public String addNewContact(@ModelAttribute Contact c, Model model) {
 		repo.save(c);
 		model.addAttribute("contacts", repo.findAll());
 		return "results";
 	}
-
+	
 	@GetMapping("/edit/{id}")
 	public String showUpdateForm(@PathVariable("id") int id, Model model) {
-		Contact c = repo.findById((long) id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		model.addAttribute("contact", c);
-		return "update";
+	    Contact c = repo.findById((long) id)
+	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+	    model.addAttribute("contact", c);
+	    return "update";
 	}
 
+	
 	@PostMapping("/update/{id}")
-	public String updateUser(@PathVariable("id") int id, @Valid Contact c, BindingResult result, Model model) {
-		if (result.hasErrors()) {
-			c.setId(id);
-			return "update";
-		}
-
-		repo.save(c);
-		model.addAttribute("contacts", repo.findAll());
+	public String updateUser(@PathVariable("id") int id, @Valid Contact c, 
+	  BindingResult result, Model model) {
+	    if (result.hasErrors()) {
+	        c.setId(id);
+	        return "update";
+	    }
+	         
+	    repo.save(c);
+	    model.addAttribute("contacts", repo.findAll());
 		return "results";
 	}
-
+	     
 	@GetMapping("/delete/{id}")
 	public String deleteUser(@PathVariable("id") int id, Model model) {
-		Contact c = repo.findById((long) id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-		repo.delete(c);
-		model.addAttribute("contacts", repo.findAll());
+	    Contact c = repo.findById((long) id)
+	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+	    repo.delete(c);
+	    model.addAttribute("contacts", repo.findAll());
 		return "results";
 	}
-
+	
 }
