@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringContactApplication {
+public class SpringContactsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringContactApplication.class, args);
+		SpringApplication.run(SpringContactsApplication.class, args);
 	}
 
 }

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	private String name;
 	private String phone;
 	private String relationship;
@@ -65,12 +65,12 @@ public class Contact {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-
-	public int getId() {
+	
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
